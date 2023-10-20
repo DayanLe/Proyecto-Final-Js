@@ -1,0 +1,11 @@
+[
+    { "id": "1", "tipo": "Conjunto Anitta", "precio": 80000 },
+    { "id": "2", "tipo": "Conjunto Alicia", "precio": 60000 },
+    { "id": "3", "tipo": "Short Twerk", "precio": 45000 },
+    { "id": "4", "tipo": "Heels Beige", "precio": 380000 },
+    { "id": "5", "tipo": "Heels Basicos", "precio": 150000 },
+    { "id": "6", "tipo": "Heels Bota", "precio": 560000 },
+    { "id": "7", "tipo": "Kit Pole Dance", "precio": 890000 },
+    { "id": "8", "tipo": "Medias Nude", "precio": 30000 },
+    { "id": "9", "tipo": "Rodilleras", "precio": 45000 }
+]

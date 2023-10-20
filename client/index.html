@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/estilos.css">
+    <title>Academia Tropico</title>
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="container-fluid descuento d-flex flex-column justify-content-center align-items-center p-2 ">
+            <div>Agenda tu primera clase y obtén un 40% de descuento!</div>
+        </div>
+        <!-- nav -->
+        <nav class="navbar navbar-expand-lg bg-light sticky-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">Tropico ssc</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse menuNavBar" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#nosotros">Nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#productos">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#profes">Profes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contacto</a>
+                        </li>
+
+                    </ul>
+                    <i class="fa-solid fa-cart-shopping me-2 icono-carrito" id="icono-carrito"></i>
+                    <aside id="aside-bar" class="aside-bar">
+                        <!-- Contenido del aside bar -->
+                        <!-- Botón para cerrar el aside bar -->
+                        <button id="cerrarAsideBtn" class="cerrarAsideBtn" onclick="cerrarAside()" class="d-flex">
+                            <i class="fa-solid fa-xmark" style="color: #000000;"></i>
+                        </button>
+                        <h2>Carrito de Compras</h2>
+                        <ul id="lista-carrito"></ul>
+                        <p>Total: $<span id="total">0</span></p>
+                        <button class="aside-bar-button rounded-pill" id="eliminarTodoBtn"
+                            onclick="eliminarTodo()">Eliminar Todo</button>
+                        <button class="aside-bar-button rounded-pill" id="eliminarAnteriorBtn"
+                            onclick="eliminarAnterior()">Eliminar Anterior</button>
+                        <button class="aside-bar-button rounded-pill" id="seguirComprandoBtn"
+                            onclick="seguirComprando()">Seguir Comprando</button>
+
+                        <button class="aside-bar-button rounded-pill" id="pagar">
+                            <a href="./pages/pagarPedido.html">Pagar</a>
+                        </button>
+
+                    </aside>
+
+
+
+                    <form class="d-flex">
+
+                        <a href="https://calendly.com/dayanlenisc/polesport" target="_blank"
+                            class="buttonNav button rounded-pill ">Agendar Clase</a>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="./assets/Pole6.jpeg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="./assets/Dayan-2.jpeg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="./assets/Pole6.jpeg" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
+
+    </header>
+
+    <main class="">
+        <section class="container-fluid seccionHeader" id="nosotros">
+            <div class="pt-5">
+                <h1 class="d-flex justify-content-center fw-bold">Academia de <mark>Pole Dance</mark> Tropico</h1>
+                <h2 class="d-flex justify-content-center">Swing Sabor & Color</h2>
+            </div>
+            <div class="d-flex divCartoon">
+                <p class="d-flex align-items-center h4">¡Descubre la Magia del Pole Dance!
+
+                    Bienvenido a nuestro emocionante mundo del Pole Dance, donde la fuerza, la gracia y la pasión se
+                    unen en una danza vertical que desafía la gravedad. En Academia Tropico, te invitamos a explorar una
+                    forma de arte única que no solo fortalecerá tu cuerpo, sino también tu confianza y autoexpresión.
+                </p>
+                <img src="./assets/cartoon/7351360.jpg" alt="">
+            </div>
+        </section>
+
+        <section class="nuestrosProductos p-5" id="productos">
+            <div class="row">
+                <h2 class="mb-5">Nuestros productos</h2>
+                <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                    <div class="card">
+                        <img src="./assets/Conjunto-1.webp" class="card-img-top col-sm-6"
+                            alt="Conjunto para Pole Dance">
+                        <div class="card-body">
+                            <h5 class="card-title fs-4 nombreProducto">Conjunto Anitta</h5>
+                            <p class="card-text">Talla unica de tela expandex.</p>
+                            <p class="precio fw-bold">$80.000</p>
+                            <button type="submit" id="agregar_al_carrito" class="comprar-btn rounded-pill button"
+                                onclick="agregarAlCarrito(0)">Agregar al carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                    <div class="card">
+                        <img src="./assets/Conjunto-2.webp" class="card-img-top col-sm-6 conjuntoAlicia"
+                            alt="Conjunto para Pole Dance">
+                        <div class="card-body">
+                            <h5 class="card-title fs-4">Conjunto Alicia</h5>
+                            <p class="card-text">Talla unica sede desde la talla XS a la talla M.</p>
+                            <p class="precio fw-bold">$60.000</p>
+                            <button type="submit" id="agregar_al_carrito" class="comprar-btn rounded-pill button"
+                                onclick="agregarAlCarrito(1)">Agregar al carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                    <div class="card">
+                        <img src="./assets/conjunto-3.webp" class="card-img-top col-sm-6"
+                            alt="Conjunto para Pole Dance">
+                        <div class="card-body">
+                            <h5 class="card-title fs-4">Short Twerk</h5>
+                            <p class="card-text">Talla unica sede desde la talla S hasta la talla L.</p>
+                            <p class="precio fw-bold">$45.000</p>
+                            <button type="submit" id="agregar_al_carrito" class="comprar-btn rounded-pill button"
+                                onclick="agregarAlCarrito(2)">Agregar al carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                    <div class="card">
+                        <img src="./assets/heels-2.jpeg" class="card-img-top col-sm-6" alt="Conjunto para Pole Dance">
+                        <div class="card-body">
+                            <h5 class="card-title fs-4">Heels Beige</h5>
+                            <p class="card-text">Heels/Exotic unicolor beige suela de 14cm.</p>
+                            <p class="precio fw-bold">$380.000</p>
+                            <button type="submit" id="agregar_al_carrito" class="comprar-btn rounded-pill button"
+                                onclick="agregarAlCarrito(3)">Agregar al carrito</button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                    <div class="card">
+                        <img src="./assets/heels-3.webp" class="card-img-top col-sm-6 heelsbasicos"
+                            alt="Conjunto para Pole Dance">
+                        <div class="card-body">
+                            <h5 class="card-title fs-4">Heels Basicos</h5>
+                            <p class="card-text">Heel/Exotic tacon de 7cm sin suela alta.
+                            </p>
+                            <p class="precio fw-bold">$150.000</p>
+                            <button type="submit" id="agregar_al_carrito" class="comprar-btn rounded-pill button"
+                                onclick="agregarAlCarrito(4)">Agregar al carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                    <div class="card">
+                        <img src="./assets/heels.jpeg" class="card-img-top col-sm-6" alt="Conjunto para Pole Dance">
+                        <div class="card-body">
+                            <h5 class="card-title fs-4">Heels Bota</h5>
+                            <p class="card-text">Betseller 14cm de alto con textura de charol.</p>
+                            <p class="precio fw-bold">$560.000</p>
+                            <button type="submit" id="agregar_al_carrito" class="comprar-btn rounded-pill button"
+                                onclick="agregarAlCarrito(5)">Agregar al carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                    <div class="card">
+                        <img src="./assets/kit-1.jpeg" class="card-img-top col-sm-6" alt="Conjunto para Pole Dance">
+                        <div class="card-body">
+                            <h5 class="card-title fs-4">Kit Pole Dance</h5>
+                            <p class="card-text">Incluye barra de pole, soporte superior e inferior.</p>
+                            <p class="precio fw-bold">$890.000</p>
+                            <button type="submit" id="agregar_al_carrito" class="comprar-btn rounded-pill button"
+                                onclick="agregarAlCarrito(6)">Agregar al carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                    <div class="card">
+                        <img src="./assets/medias.webp" class="card-img-top col-sm-6 mediasNude"
+                            alt="Conjunto para Pole Dance">
+                        <div class="card-body">
+                            <h5 class="card-title fs-4">Medias Nude</h5>
+                            <p class="card-text">Medias antideslizantes para Pole Sport.
+                            </p>
+                            <p class="precio fw-bold">$30.000</p>
+                            <button type="submit" id="agregar_al_carrito" class="comprar-btn rounded-pill button"
+                                onclick="agregarAlCarrito(7)">Agregar al carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                    <div class="card">
+                        <img src="./assets/rodilleras.jpeg" class="card-img-top col-sm-6"
+                            alt="Conjunto para Pole Dance">
+                        <div class="card-body">
+                            <h5 class="card-title fs-4">Rodilleras</h5>
+                            <p class="card-text">Rodilleras pad 3k, antipeladuras.</p>
+                            <p class="precio fw-bold">$45.000</p>
+                            <button type="submit" id="agregar_al_carrito" class="comprar-btn rounded-pill button"
+                                onclick="agregarAlCarrito(8)">Agregar al carrito</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="whyPole">
+            <div class="pb-3">
+                <h2 class="fw-bold px-5">¿Por qué practicar Pole Dance?</h2>
+                <p class="px-5">Fortalece tu confianza, mejora tu forma física y descubre una forma creativa y divertida
+                    de expresarte.</p>
+            </div>
+
+            <div class="whypoleBackground">
+                <div class="padre row">
+                    <div class="col-sm-12 col-md-6 d-flex px-5">
+                        <div class="numero fs-1 p-3">01</div>
+                        <div class="p-3">
+                            <h3>Confianza y Empoderamiento</h3>
+                            <p>El pole dance empodera a las mujeres, aumentando su confianza y autoestima a medida que
+                                desarrollan fuerza y destreza en un entorno de apoyo.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 d-flex px-5">
+                        <div class="numero fs-1 p-3">02</div>
+                        <div class="p-3">
+                            <h3>Ejercicio Integral y Divertido</h3>
+                            <p>El pole dance ofrece un ejercicio completo y divertido que tonifica el cuerpo, mejora la
+                                flexibilidad y quema calorías, manteniéndote activa y en forma.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 d-flex px-5">
+                        <div class="numero fs-1 p-3">03</div>
+                        <div class="p-3">
+                            <h3>Creatividad y Expresión Artística</h3>
+                            <p>Esta disciplina es una forma de expresión artística que permite liberar la creatividad a
+                                través de movimientos elegantes y coreografías personales.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 d-flex px-5">
+                        <div class="numero fs-1 p-3">04</div>
+                        <div class="p-3">
+                            <h3>Comunidad de Apoyo Femenino</h3>
+                            <p>Al unirte al pole dance, te integras en una comunidad de mujeres que comparten tus
+                                intereses,
+                                brindándote amistad y apoyo en tu viaje de empoderamiento y superación personal.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="profes p-5" id="profes">
+            <h2>Profesoras certificadas</h2>
+            <div class="row row-cols-1 row-cols-md-3 g-4 pt-5">
+                <div class="col">
+                    <div class="card">
+                        <img src="./assets/profe1.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body boxProfe1">
+                            <h5 class="card-title">Lorenza Jimenez</h5>
+                            <p class="card-text">Profesora de Pole Sport</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="./assets/profe2.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body boxProfe2">
+                            <h5 class="card-title">Sofi Gonzalez</h5>
+                            <p class="card-text">Profesora de Acrotelas</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="./assets/profe3.jpeg" class="card-img-top imgProfe" alt="...">
+                        <div class="card-body boxProfe3">
+                            <h5 class="card-title tituloProfes">Luisa Gonzalez</h5>
+                            <p class="card-text">Profesora de Flex, Pole Sport y Exotic</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="seccionImgTropico p-5">
+            <img src="./assets/Tropico.png" alt="">
+        </section>
+
+        <section class="efectoParallax mb-5">
+            <div class="container text-center mt-5 mt-5 px-5">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 parallax d-flex justify-content-center align-items-center">
+                        <img src="./assets/bailando.jpeg" alt="" id="bailarina1">
+                    </div>
+                    <div class="col-sm-12 col-md-6 d-flex justify-content-center align-items-center somosAcademia">
+                        <div>
+                            <h3 class="p-3">Somos Academia Tropico</h3>
+                            <p class="p-3">Ofrecemos una variedad de clases diseñadas para todos los niveles, desde
+                                clases introductorias para principiantes hasta sesiones avanzadas de alto rendimiento.
+                                Nuestros instructores altamente capacitados te guiarán en cada paso, asegurándose de que
+                                tengas una experiencia segura y enriquecedora.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <h2>Posts!</h2>
+        <ul id="listado"></ul>
+
+    </main>
+
+    <div class="b-example-divider"></div>
+
+
+    <div class="container-fluid contenedorFooter">
+        <footer class="py-3 ">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Inicio</a></li>
+                <li class="nav-item"><a href="#nosotros" class="nav-link px-2 text-body-secondary">Nosotros</a></li>
+                <li class="nav-item"><a href="#productos" class="nav-link px-2 text-body-secondary">Productos</a></li>
+                <li class="nav-item"><a href="#profes" class="nav-link px-2 text-body-secondary">Profes</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Contacto</a></li>
+            </ul>
+            <p class="text-center text-body-secondary">&copy; 2023 Realizado por Dayan Lenis</p>
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24">
+                            <use xlink:href="#twitter" />
+                        </svg></a></li>
+                <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24">
+                            <use xlink:href="#instagram" />
+                        </svg></a></li>
+                <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24">
+                            <use xlink:href="#facebook" />
+                        </svg></a></li>
+            </ul>
+        </footer>
+    </div>
+
+    <!-- <div class="b-example-divider"></div> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://kit.fontawesome.com/1a1e37f7dd.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
+    <script src="./js/index.js"></script>
+</body>
+
+</html>
