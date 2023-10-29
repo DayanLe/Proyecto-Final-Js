@@ -19,6 +19,93 @@
     });
 })();
 
+//*--------------------------------------------------------------
+
+
+
+let form1 = document.getElementById("form1");
+let allPlans = document.getElementById("allPlans");
+
+form1.addEventListener("submit",confirmar);
+
+
+let infoList;
+let stotageList;
+
+
+
+infoList = JSON.parse(localStorage.getItem("infoList")) || [];
+
+
+
+
+
+const compraFinal = (nombre)=>{
+    Swal.fire({
+        icon: 'success',
+        title: 'Compra realizada con exito!',
+        showConfirmButton: false,
+        timer: 3000
+      })
+}
+
+
+
+const mostrarPago = ()=>{
+    let stotaged = infoList;
+    stotageList = [];
+    allPlans.innerHTML = "";
+
+    for(const objeto of stotaged){
+        console.log(objeto);
+        stotageList.push(new planInfo(objeto));
+    }
+    console.log(stotageList);
+
+    for(info of stotageList){
+        let firstDiv = document.createElement("div");
+        firstDiv.className="col";
+        let secondDiv = document.createElement("div");
+        secondDiv.className ="card mb-4 rounded-3 shadow-sm";
+ 
+        secondDiv.innerHTML = info.assemble();
+        firstDiv.append(secondDiv);
+        allPlans.append(firstDiv)
+    }
+  
+}
+
+
+const newPlan = (info) =>{
+
+   infoList.push(info);
+ 
+   localStorage.setItem("infoList", JSON.stringify(infoList));
+   mostrarPago();
+}
+
+
+function confirmar(e){
+   // Inputs
+    let validationCustom01 = document.getElementById("validationCustom01").value;
+    let validationCustom02 = document.getElementById("validationCustom02").value;
+    let validationCustom03 = document.getElementById("validationCustom03").value;
+    let validationCustom04 = document.getElementById("validationCustom04").value;
+
+    e.preventDefault();
+
+    let info = {
+        nombre: validationCustom01,
+        telefono: validationCustom03,
+        dir: validationCustom04,
+        correo: validationCustom02
+    }
+
+    newPlan(info);
+
+}
+
+mostrarPago();
 
 
 
@@ -26,20 +113,7 @@
 
 
 
-/*const formDatas = {
-    // Obtén los datos del formulario, por ejemplo:
-    nombre: document.getElementById('validationCustom01').value,
-    apellido: document.getElementById('validationCustom02').value,
-    telefono: document.getElementById('validationCustom03').value,
-    direccion: document.getElementById('validationCustom04').value,
-    ciudad: document.getElementById('validationCustom05').value,
-    email: document.getElementById('validationCustom06').value,
-    metodoDePago: document.getElementById('validationCustom07').value,
-    franquicia: document.getElementById('validationCustom08').value,
-    nombreTarjeta: document.getElementById('validationCustom09').value,
-    NumeroTarjeta: document.getElementById('validationCustom10').value,
-    /*  cvc: document.getElementById('validationCustom012').value, */
-//}; 
+
 
 
 
