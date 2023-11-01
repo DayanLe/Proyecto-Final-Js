@@ -1,6 +1,3 @@
-
-
-
 const productos = [
   { id: "1", tipo: "Conjunto Anitta", precio: 80000 },
   { id: "2", tipo: "Conjunto Alicia", precio: 60000 },
@@ -26,6 +23,9 @@ function agregarAlCarrito(id) {
   // Actualiza la lista de productos en el aside
   actualizarCarrito();
 
+   // Registra la actividad del usuario en localStorage
+   registrarActividadEnLocalStorage(producto);
+
   Toastify({
     text: `Producto "${producto.tipo}" agregado con éxito.`,
     duration: 3000,  // Duración de la notificación en milisegundos
@@ -35,21 +35,84 @@ function agregarAlCarrito(id) {
   }).showToast();
 }
 
+// Registra la actividad del usuario en localStorage
+function registrarActividadEnLocalStorage(producto) {
+  // Recupera el historial de actividad del usuario (si existe)
+  let actividadAnterior = JSON.parse(localStorage.getItem('historialActividad')) || [];
+
+  // Registra la actividad actual del usuario
+  const nuevaActividad = {
+    producto: producto.tipo,
+    fecha: new Date().toLocaleString(),
+  };
+
+  // Agrega la nueva actividad al historial
+  actividadAnterior.push(nuevaActividad);
+
+  // Almacena el historial de actividad actualizado en localStorage
+  localStorage.setItem('historialActividad', JSON.stringify(actividadAnterior));
+}
+
+// Obtener y mostrar el historial de actividad del usuario
+function mostrarHistorialActividad() {
+  const historialActividad = JSON.parse(localStorage.getItem('historialActividad'));
+  if (historialActividad && historialActividad.length > 0) {
+    historialActividad.forEach((actividad, index) => {
+      console.log(`Actividad #${index + 1}:`);
+      console.log(`Producto: ${actividad.producto}`);
+      console.log(`Fecha: ${actividad.fecha}`);
+      console.log("------");
+      // Puedes mostrar esta información en tu página web como desees
+    });
+  } else {
+    console.log("No hay actividad registrada en el historial.");
+  }
+}
+
+// Llama a esta función cuando quieras mostrar el historial de actividad
+mostrarHistorialActividad();
 
 
 // Actualiza la lista de productos en el aside
 function actualizarCarrito() {
-  const listaCarrito = document.getElementById("lista-carrito");
+  const tablaCarrito = document.getElementById("tabla-carrito");
   const totalCarrito = document.getElementById("total");
-  listaCarrito.innerHTML = ""; // Borra los elementos previos
+  tablaCarrito.innerHTML = ""; // Borra las filas previas
 
   let total = 0;
 
-  // Recorre los productos en el carrito y crea elementos de lista para cada uno
-  carrito.forEach((producto) => {
-    const li = document.createElement("li");
-    li.textContent = `${producto.tipo} - $${producto.precio}`;
-    listaCarrito.appendChild(li);
+  // Recorre los productos en el carrito y crea filas de tabla para cada uno
+  carrito.forEach((producto, index) => {
+    const fila = tablaCarrito.insertRow(); // Crea una nueva fila
+
+    // Crea celdas para el número de producto, tipo y precio
+    const celdaNumero = fila.insertCell(0);
+    const celdaTipo = fila.insertCell(1);
+    const celdaPrecio = fila.insertCell(2);
+    const celdaEliminar = fila.insertCell(3);
+
+    celdaNumero.textContent = index + 1; // Número de producto
+    celdaTipo.textContent = producto.tipo; // Tipo de producto
+    celdaPrecio.textContent = `$${producto.precio}`; // Precio del producto
+
+    // Crea el botón de eliminar y agrega un evento para eliminar el producto
+    const botonEliminar = document.createElement("button");
+    botonEliminar.textContent = "Eliminar";
+    botonEliminar.className = "btn btn-danger"; // Puedes personalizar las clases según tu estilo
+    botonEliminar.addEventListener("click", () => {
+      eliminarProductoDelCarrito(index);
+      
+        Toastify({
+          text: `Producto "${producto.tipo}" eliminado.`,
+          duration: 3000,  // Duración de la notificación en milisegundos
+          position: "left",
+          close: true,
+          backgroundColor: 'llinear-gradient(to left, b2b2ff, blue)', // Color de fondo
+        }).showToast();
+      
+    });
+
+    celdaEliminar.appendChild(botonEliminar);
 
     total += producto.precio;
   });
@@ -58,46 +121,50 @@ function actualizarCarrito() {
   totalCarrito.textContent = total;
 }
 
-// boton eliminar Todo
-function eliminarTodo() {
-  carrito.length = 0;
+// Función para eliminar un producto del carrito
+function eliminarProductoDelCarrito(index) {
+  const productoEliminado = carrito[index];
+  carrito.splice(index, 1); // Elimina el producto del carrito
 
+  // Actualiza la lista de productos en el aside
   actualizarCarrito();
-  Toastify({
-    text: "Productos eliminados",
-    duration: 3000,
-    close: true,
-    gravity: "top", // `top` or `bottom`
-    position: "right", // `left`, `center` or `right`
-    stopOnFocus: true, // Prevents dismissing of toast on hover
-    style: {
-      background: "linear-gradient(to left, b2b2ff, blue)",
-      borderRadius: "15px",
 
-    },
-    onClick: function () { } // Callback after click
-  }).showToast();
+   // Elimina el producto del historial de actividad en localStorage
+   eliminarActividadDelLocalStorage(productoEliminado);
 }
 
-// btn Eliminar anterior
-function eliminarAnterior() {
-  carrito.pop();
+// Elimina el producto del historial de actividad en localStorage
+function eliminarActividadDelLocalStorage(producto) {
+  // Recupera el historial de actividad del usuario (si existe)
+  let actividadAnterior = JSON.parse(localStorage.getItem('historialActividad')) || [];
 
-  actualizarCarrito();
-  Toastify({
-    text: "Producto eliminado del carrito",
-    duration: 3000,
-    close: true,
-    gravity: "top", // `top` or `bottom`
-    position: "right", // `left`, `center` or `right`
-    stopOnFocus: true, // Prevents dismissing of toast on hover
-    style: {
-      background: "linear-gradient(to left, b2b2ff, blue)",
-      borderRadius: "15px",
+  // Encuentra y elimina la actividad relacionada con el producto eliminado
+  actividadAnterior = actividadAnterior.filter((actividad) => actividad.producto !== producto.tipo);
 
-    },
-    onClick: function () { } // Callback after click
-  }).showToast();
+  // Almacena el historial de actividad actualizado en localStorage
+  localStorage.setItem('historialActividad', JSON.stringify(actividadAnterior));
+}
+
+
+// boton eliminar Todo
+function eliminarTodo() {
+  if (carrito.length > 0) {
+    carrito.length = 0;
+
+    actualizarCarrito();
+
+    Toastify({
+      text: "Productos eliminados",
+      duration: 3000,
+      close: true,
+      gravity: "top",
+      position: "left",
+      style: {
+        background: "linear-gradient(to left, b2b2ff, blue)",
+      },
+      onClick: function () { }
+    }).showToast();
+  }
 }
 
 
@@ -117,7 +184,7 @@ const cerrarAsideBtn = document.getElementById('cerrarAsideBtn');
 // Función para abrir el aside bar
 iconoCarrito.addEventListener('click', () => {
   asideBar.style.display = (asideBar.style.display === "block") ? "none" : "block";
-  asideBar.style.width = '250px';
+  asideBar.style.width = '100%';
   asideBar.style.right = '0';
 });
 
@@ -133,8 +200,7 @@ function seguirComprando() {
  
 }
 
-
-//?Boton Agendar
+//* Boton Agendar
 
 function redirect() {
   window.location.href = "https://calendly.com/dayanlenisc/polesport";
@@ -155,7 +221,3 @@ fetch('data.json')
         lista.append(li)
       })
   })
-
-
-
-

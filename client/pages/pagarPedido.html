@@ -53,29 +53,12 @@
 
                     </ul>
                     <i class="fa-solid fa-cart-shopping me-2 icono-carrito" id="icono-carrito"></i>
-                    <aside id="aside-bar" class="aside-bar">
-                        <!-- Contenido del aside bar -->
-                        <!-- Botón para cerrar el aside bar -->
-                        <button id="cerrarAsideBtn" class="cerrarAsideBtn" onclick="cerrarAside()" class="d-flex">
-                            <i class="fa-solid fa-xmark" style="color: #000000;"></i>
-                        </button>
-                        <h2>Carrito de Compras</h2>
-                        <ul id="lista-carrito"></ul>
-                        <p>Total: $<span id="total">0</span></p>
-                        <button class="aside-bar-button rounded-pill" id="eliminarTodoBtn"
-                            onclick="eliminarTodo()">Eliminar Todo</button>
-                        <button class="aside-bar-button rounded-pill" id="eliminarAnteriorBtn"
-                            onclick="eliminarAnterior()">Eliminar Anterior</button>
-                        <button class="aside-bar-button rounded-pill" id="seguirComprandoBtn"
-                            onclick="seguirComprando()">Seguir Comprando</button>
-                        <button class="aside-bar-button rounded-pill" id="pagar" onclick="pagar()">pagar</button>
-                    </aside>
 
-                    <form class="d-flex">
+                    <div class="d-flex">
 
                         <a href="https://calendly.com/dayanlenisc/polesport" target="_blank"
                             class="buttonNav button rounded-pill ">Agendar Clase</a>
-                    </form>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -83,8 +66,6 @@
     </header>
 
     <main>
-
-        <!-- Gestión de Planes -->
         <div class="container py-3">
             <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
                 <h1 class="display-4 fw-normal">Confirma tu compra</h1>
@@ -96,10 +77,9 @@
                         Continuar
                     </a>
                 </p>
-                <!-- Formulario para crear el nuevo plan-->
                 <div class="collapse" id="collapseExample">
                     <div class="card card-body">
-                        <form id="form1">
+                        <form id="form1" class="needs-validation" novalidate>
                             <h3 class="py-3">Datos del envío</h3>
                             <div class="container">
                                 <div class="row mb-3">
@@ -147,12 +127,39 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                            </div>
+                            <h3 class="py-3">Datos de facturación</h3>
+                            <div class="container">
+                                <div class="row mb-3">
                                     <div class="col">
-                                        <div class="mb-3">
-                                            <input class="form-control btn btn-info" type="submit" value="Confirmar" name="button"></input>
-
+                                        <div class="col-auto">
+                                            <label for="validationCustom09" class="form-label">Nombre en la
+                                                tarjeta</label>
+                                            <input type="text" class="form-control" id="validationCustom09"
+                                                placeholder="Pepito Perez" required>
+                                            <div class="invalid-feedback">
+                                                Por favor ingrese titular de la tarjeta.
+                                            </div>
                                         </div>
+                                    </div>
+                                    <div class="col mb-3">
+                                        <label for="validationCustom10" class="form-label">Número de
+                                            tarjeta</label>
+                                        <input type="text" class="form-control" id="validationCustom10" required>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="validationCustom11" class="form-label">Fecha de
+                                                vencimiento</label>
+                                            <input type="text" class="form-control" id="validationCustom11" required>
+                                        </div>
+                                        <div class="col mb-3">
+                                            <label for="validationCustom12" class="form-label">CVC</label>
+                                            <input type="text" class="form-control" id="validationCustom12" required>
+                                        </div>
+
+                                        <button name="button" type="button" class="w-100 btn btn-lg btn-success"
+                                            onclick="pagar()">Pagar</button>
                                     </div>
                                 </div>
                             </div>
@@ -161,59 +168,55 @@
                 </div>
             </div>
         </div>
+    </main>
 
-        <div class="container py-3">
-            <!-- Mostrará el listado de planes-->
-            <div id="allPlans" class="row  mb-3 text-center">
-            </div>
-        </div>
+    <div class="container-fluid contenedorFooter">
+        <footer class="py-3 ">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="../index.html" class="nav-link px-2 text-body-secondary">Inicio</a>
+                </li>
+                <li class="nav-item"><a href="../index.html" class="nav-link px-2 text-body-secondary">Nosotros</a>
+                </li>
+                <li class="nav-item"><a href="../index.html" class="nav-link px-2 text-body-secondary">Productos</a>
+                </li>
+                <li class="nav-item"><a href="../index.html" class="nav-link px-2 text-body-secondary">Profes</a>
+                </li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Contacto</a>
+                </li>
+            </ul>
+            <p class="text-center text-body-secondary">&copy; 2023 Realizado por Dayan Lenis</p>
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24">
+                            <use xlink:href="#twitter" />
+                        </svg></a></li>
+                <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24">
+                            <use xlink:href="#instagram" />
+                        </svg></a></li>
+                <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24">
+                            <use xlink:href="#facebook" />
+                        </svg></a></li>
+            </ul>
+        </footer>
+    </div>
 
-        <div class="container-fluid contenedorFooter">
-            <footer class="py-3 ">
-                <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-                    <li class="nav-item"><a href="../index.html" class="nav-link px-2 text-body-secondary">Inicio</a>
-                    </li>
-                    <li class="nav-item"><a href="../index.html" class="nav-link px-2 text-body-secondary">Nosotros</a>
-                    </li>
-                    <li class="nav-item"><a href="../index.html" class="nav-link px-2 text-body-secondary">Productos</a>
-                    </li>
-                    <li class="nav-item"><a href="../index.html" class="nav-link px-2 text-body-secondary">Profes</a>
-                    </li>
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Contacto</a></li>
-                </ul>
-                <p class="text-center text-body-secondary">&copy; 2023 Realizado por Dayan Lenis</p>
-                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                    <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24">
-                                <use xlink:href="#twitter" />
-                            </svg></a></li>
-                    <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24">
-                                <use xlink:href="#instagram" />
-                            </svg></a></li>
-                    <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24">
-                                <use xlink:href="#facebook" />
-                            </svg></a></li>
-                </ul>
-            </footer>
-        </div>
+    <!-- <div class="b-example-divider"></div> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-        <!-- <div class="b-example-divider"></div> -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://kit.fontawesome.com/1a1e37f7dd.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
 
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-        <script src="https://kit.fontawesome.com/1a1e37f7dd.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-            integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-            crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-            integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-            crossorigin="anonymous"></script>
-
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-        <script src="class.js"></script>
-        <script src="../pages/pagarPedido.js"></script>
+    <script src="class.js"></script>
+    <script src="../pages/pagarPedido.js"></script>
 </body>
 
 </html>

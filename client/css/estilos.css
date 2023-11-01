@@ -33,16 +33,18 @@ header .navbar {
 
 /* Estilo del aside bar */
 .aside-bar {
+    display: none;
     width: 0;
     position: fixed;
     top: 0;
-    right: -250px;
+    right: -2500px;
     /* Inicialmente oculto */
     height: 100%;
     background-color: #f2f2f2;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
+    z-index: 1000;
 }
 
 .divCartoon p {
