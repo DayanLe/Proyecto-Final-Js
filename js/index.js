@@ -207,7 +207,7 @@ function redirect() {
 }
 
 
-const lista = document.querySelector('lista-carrito')
+const lista = document.getElementById("clima")
 
 fetch('data.json')
   .then((res) => res.json())
@@ -221,3 +221,11 @@ fetch('data.json')
         lista.append(li)
       })
   })
+
+
+  const options = {method: 'GET'};
+
+  fetch('https://api.weatherapi.com/v1/current.json?key=299f4b051c4a4840bb513716230311&q=Colombia&aqi=no', options)
+    .then(response => response.json())
+    .then(response => console.log(response))
+    .catch(err => console.error(err));

@@ -147,7 +147,7 @@
                                             tarjeta</label>
                                         <input type="text" class="form-control" id="validationCustom10" required>
                                     </div>
-                                    <div class="row">
+                                    <div class="row mb-3">
                                         <div class="col mb-3">
                                             <label for="validationCustom11" class="form-label">Fecha de
                                                 vencimiento</label>
@@ -158,8 +158,14 @@
                                             <input type="text" class="form-control" id="validationCustom12" required>
                                         </div>
 
-                                        <button name="button" type="button" class="w-100 btn btn-lg btn-success"
+                                        <button name="button" id="btn_Pagar" type="button" class="w-100 btn btn-lg btn-success"
                                             onclick="pagar()">Pagar</button>
+                                    </div>
+                                    <div class="row" display="none">
+                                        <div class="col mb-3">
+                                            <span id="msj_Procesando"></span>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>

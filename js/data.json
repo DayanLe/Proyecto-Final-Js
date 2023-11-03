@@ -1,11 +1,5 @@
+
+
 [
-    { "id": "1", "tipo": "Conjunto Anitta", "precio": 80000 },
-    { "id": "2", "tipo": "Conjunto Alicia", "precio": 60000 },
-    { "id": "3", "tipo": "Short Twerk", "precio": 45000 },
-    { "id": "4", "tipo": "Heels Beige", "precio": 380000 },
-    { "id": "5", "tipo": "Heels Basicos", "precio": 150000 },
-    { "id": "6", "tipo": "Heels Bota", "precio": 560000 },
-    { "id": "7", "tipo": "Kit Pole Dance", "precio": 890000 },
-    { "id": "8", "tipo": "Medias Nude", "precio": 30000 },
-    { "id": "9", "tipo": "Rodilleras", "precio": 45000 }
+    {"location":{"name":"Bogota","region":"Cundinamarca","country":"Colombia","lat":4.6,"lon":-74.08,"tz_id":"America/Bogota","localtime_epoch":1698975723,"localtime":"2023-11-02 20:42"},"current":{"last_updated_epoch":1698975000,"last_updated":"2023-11-02 20:30","temp_c":14.0,"temp_f":57.2,"is_day":0,"condition":{"text":"Light rain","icon":"//cdn.weatherapi.com/weather/64x64/night/296.png","code":1183},"wind_mph":4.3,"wind_kph":6.8,"wind_degree":280,"wind_dir":"W","pressure_mb":1026.0,"pressure_in":30.3,"precip_mm":6.07,"precip_in":0.24,"humidity":94,"cloud":75,"feelslike_c":14.7,"feelslike_f":58.4,"vis_km":7.0,"vis_miles":4.0,"uv":1.0,"gust_mph":2.7,"gust_kph":4.3}}
 ]
